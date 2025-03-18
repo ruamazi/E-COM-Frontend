@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL, sendTokenHeader, token } from "../../constants";
-import Order from "../../../../api/models/Order";
 
 export const getAllUsers = createAsyncThunk(
  "admin/getAllUsers",
