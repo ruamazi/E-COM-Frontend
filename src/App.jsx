@@ -17,6 +17,7 @@ import ProductManagment from "./components/admin/ProductManagment";
 import EditProduct from "./components/admin/EditProduct";
 import OrderManagment from "./components/admin/OrderManagment";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import CreateProduct from "./pages/CreateProduct";
 
 const App = () => {
  const routesWithUserLayout = [
@@ -92,6 +93,7 @@ const App = () => {
     <Route path="products" element={<ProductManagment />} />
     <Route path="products/edit/:id" element={<EditProduct />} />
     <Route path="orders" element={<OrderManagment />} />
+    <Route path="create-product" element={<CreateProduct />} />
    </Route>
   </Routes>
  );

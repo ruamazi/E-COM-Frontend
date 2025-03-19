@@ -5,6 +5,7 @@ import { FaClipboardList } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
 import { clearCart } from "../../redux/slices/cartSlice";
+import { IoCreateSharp } from "react-icons/io5";
 
 const AdminSidebar = () => {
  const navigate = useNavigate();
@@ -25,6 +26,11 @@ const AdminSidebar = () => {
    name: "Users",
    to: "/admin/users",
    icon: <FaUser />,
+  },
+  {
+   name: "Create Product",
+   to: "/admin/create-product",
+   icon: <IoCreateSharp size={18} />,
   },
   {
    name: "Shop",
