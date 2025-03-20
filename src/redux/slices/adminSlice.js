@@ -162,7 +162,7 @@ export const deleteOrder = createAsyncThunk(
  async (orderId, { rejectWithValue }) => {
   try {
    await axios.delete(
-    `${API_URL}/api/admin/delete-order/${orderId}`,
+    `${API_URL}/api/orders/delete-order/${orderId}`,
     sendTokenHeader
    );
    return orderId;

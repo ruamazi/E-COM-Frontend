@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrders, updateOrderStatus } from "../../redux/slices/adminSlice";
+import {
+ deleteOrder,
+ getAllOrders,
+ updateOrderStatus,
+} from "../../redux/slices/adminSlice";
 import Loader from "../common/Loader";
 
 const OrderManagment = () => {
@@ -14,6 +18,11 @@ const OrderManagment = () => {
 
  const handleStatusChange = (orderId, status) => {
   dispatch(updateOrderStatus({ id: orderId, status }));
+ };
+ const handleDeleteOrder = (orderId) => {
+  if (window.confirm("Are you sure you want to delete this order?")) {
+   dispatch(deleteOrder(orderId));
+  }
  };
 
  useEffect(() => {
@@ -69,12 +78,21 @@ const OrderManagment = () => {
          </select>
         </td>
         <td className="p-3">
-         <button
-          onClick={() => handleStatusChange(order._id, "Delivered")}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-         >
-          Mark as Delivered
-         </button>
+         {order.status === "Cancelled" || order.status === "Delivered" ? (
+          <button
+           onClick={() => handleDeleteOrder(order._id)}
+           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 w-full"
+          >
+           Delete
+          </button>
+         ) : (
+          <button
+           onClick={() => handleStatusChange(order._id, "Delivered")}
+           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          >
+           Mark as Delivered
+          </button>
+         )}
         </td>
        </tr>
       ))
@@ -87,6 +105,10 @@ const OrderManagment = () => {
      )}
     </tbody>
    </table>
+   <p className="text-sm text-gray-500 mt-4">
+    You can DELETE only orders that are Delivered or Cancelled and older than 3
+    months.
+   </p>
   </div>
  );
 };
